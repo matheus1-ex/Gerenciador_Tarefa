@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --fundo: #eef2ff;
+    --fundo-escuro: #dbeafe;
+    --cartao: rgba(255, 255, 255, 0.88);
+    --texto: #172033;
+    --texto-suave: #64748b;
+    --primaria: #4f46e5;
+    --primaria-escura: #3730a3;
+    --secundaria: #06b6d4;
+    --sucesso: #16a34a;
+    --borda: rgba(148, 163, 184, 0.35);
+    --sombra: 0 20px 45px rgba(30, 41, 59, 0.16);
+    --raio: 22px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: var(--texto);
+    background:
+        radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.22), transparent 32rem),
+        linear-gradient(135deg, var(--fundo), var(--fundo-escuro));
+    padding: 32px 18px 18px;
+}
+
+.cabeçalho,
+.cabe��alho {
+    width: min(1100px, 100%);
+    margin: 0 auto 28px;
+    padding: 30px;
+    border: 1px solid var(--borda);
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.96), rgba(6, 182, 212, 0.9));
+    box-shadow: var(--sombra);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.cabeçalho h1,
+.cabe��alho h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.1;
+    max-width: 560px;
+    text-shadow: 0 4px 18px rgba(15, 23, 42, 0.28);
+}
+
+.pesquisar {
+    width: min(390px, 100%);
+    padding: 17px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.26);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.pesquisar button {
+    display: grid;
+    grid-template-columns: repeat(1, 3fr);
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pesquisar input {
+    grid-column: 1 / -1;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--texto);
+    font: inherit;
+    padding: 13px 15px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primaria);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.14);
+    transform: translateY(-1px);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #94a3b8;
+}
+
+button {
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 13px 18px;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.buscar {
+    background: #fff;
+    color: var(--primaria-escura);
+}
+
+.mostrar {
+    background: rgba(15, 23, 42, 0.22);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+}
+
+.conteudo {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+}
+
+.painelAtividades,
+.tituloHistorico {
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    background: var(--cartao);
+    box-shadow: var(--sombra);
+    backdrop-filter: blur(14px);
+}
+
+.painelAtividades {
+    padding: 30px;
+}
+
+#FormTarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#FormTarefa br {
+    display: none;
+}
+
+#FormTarefa label {
+    color: var(--texto-suave);
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+#FormTarefa input,
+#FormTarefa textarea,
+#FormTarefa select {
+    margin-bottom: 8px;
+}
+
+.adicionar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+.adicionarTarefa {
+    min-width: 220px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    box-shadow: 0 14px 24px rgba(79, 70, 229, 0.28);
+}
+
+.tituloHistorico {
+    width: min(1100px, 100%);
+    margin: 26px auto 0;
+    padding: 28px;
+}
+
+.tituloHistorico h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: var(--primaria-escura);
+}
+
+.PainelHistorico {
+    min-height: 150px;
+    border: 1px dashed rgba(79, 70, 229, 0.28);
+    border-radius: 18px;
+    background: rgba(248, 250, 252, 0.74);
+    padding: 10px;
+}
+
+#HistoricoTarefas {
+    display: grid;
+    gap: 16px;
+}
+
+#HistoricoTarefas > div{
+    width: 100%;
+    padding: 20px;
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#HistoricoTarefas h4 {
+    font-size: 1.2rem;
+    color: var(--primaria-escura);
+}
+
+#HistoricoTarefas p {
+    color: var(--texto-suave);
+}
+
+.Info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(110px, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+.Info > div {
+    width: 100% !important;
+    min-height: 34px;
+    padding: 8px 12px;
+    border-radius: 999px !important;
+    font-weight: 700;
+    text-align: center;
+}
+
+.botões {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+#HistoricoTarefas button{
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    font-weight: 700;
+}
+
+.editar {
+    background: #e0e7ff;
+    color: var(--primaria-escura);
+}
+
+.excluir {
+    background: #fee2e2;
+    color: #991b1b;
+}
+#resultado > div {
+    border-left: 6px solid var(--primaria);
+    border-radius: 18px;
+    background: #fff;
+    padding: 16px;
+    gap: 10px;
+    box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+}
+
+#resultado {
+    width: min(1100px, 100%);
+    margin: 22px auto 0;
+    display: grid;
+    gap: 14px;
+}
+
+footer {
+    width: min(1100px, 100%);
+    margin: 28px auto 0;
+    padding: 18px;
+    text-align: center;
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+@media (max-width: 780px) {
+    body {
+        padding-top: 18px;
+    }
+
+    .cabeçalho,
+    .cabe��alho {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 24px;
+    }
+
+    .pesquisar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 99%;
+    }
+    
+
+    .pesquisar input,
+    .pesquisar button{
+        width: 100%;
+    }
+
+    .painelAtividades,
+    .tituloHistorico {
+        padding: 22px;
+    }
+
+    .adicionarTarefa {
+        width: 100%;
+    }
+}
