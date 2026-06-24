@@ -34,7 +34,7 @@ body {
 
 .cabeçalho,
 .cabe��alho {
-    width: min(1100px, 100%);
+    width: min(100, 100%);
     margin: 0 auto 28px;
     padding: 30px;
     border: 1px solid var(--borda);
@@ -44,7 +44,8 @@ body {
     color: #fff;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     gap: 24px;
 }
 
@@ -223,8 +224,8 @@ button:active {
     gap: 16px;
 }
 
-#HistoricoTarefas > div{
-    width: 100%;
+#HistoricoTarefas .historico{
+    width: 99%;
     padding: 20px;
     border-radius: 18px;
     background: white;
@@ -244,7 +245,11 @@ button:active {
 }
 
 .Info {
-    display: grid;
+    display: flex;
+    width: 90%;
+    height: 80%;
+    flex-direction: column;
+    justify-content: center;
     grid-template-columns: repeat(3, minmax(110px, 1fr));
     gap: 10px;
     align-items: center;
@@ -308,39 +313,3 @@ footer {
     color: var(--texto-suave);
     font-weight: 600;
 }
-
-@media (max-width: 780px) {
-    body {
-        padding-top: 18px;
-    }
-
-    .cabeçalho,
-    .cabe��alho {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 24px;
-    }
-    
-    .pesquisar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 99%;
-    }
-    
-
-    .pesquisar input,
-    .pesquisar button{
-        width: 100%;
-    }
-
-    .painelAtividades,
-    .tituloHistorico {
-        padding: 22px;
-    }
-
-    .adicionarTarefa {
-        width: 100%;
-    }
-}
-

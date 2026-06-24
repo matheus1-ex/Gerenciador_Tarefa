@@ -219,11 +219,14 @@ button:active {
 }
 
 #HistoricoTarefas {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 16px;
+    align-items: center;
+    justify-content: center;
 }
 
-#HistoricoTarefas > div{
+#HistoricoTarefas .historico{
     width: 100%;
     padding: 20px;
     border-radius: 18px;
@@ -244,10 +247,10 @@ button:active {
 }
 
 .Info {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(110px, 1fr));
+    display: flex;
+    width: 40%;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
 }
 
 .Info > div {
@@ -262,7 +265,6 @@ button:active {
 .botões {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;
     margin-top: 4px;
 }
 
@@ -308,39 +310,3 @@ footer {
     color: var(--texto-suave);
     font-weight: 600;
 }
-
-@media (max-width: 780px) {
-    body {
-        padding-top: 18px;
-    }
-
-    .cabeçalho,
-    .cabe��alho {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 24px;
-    }
-    
-    .pesquisar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 99%;
-    }
-    
-
-    .pesquisar input,
-    .pesquisar button{
-        width: 100%;
-    }
-
-    .painelAtividades,
-    .tituloHistorico {
-        padding: 22px;
-    }
-
-    .adicionarTarefa {
-        width: 100%;
-    }
-}
-

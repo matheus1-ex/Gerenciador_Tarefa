@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/stylo.css">
+    <link rel="stylesheet" href="assets/css/stylo.css" media ="(min-width: 430px)">
+    <link rel="stylesheet" href="assets/css/media_max-390.css" media="(max-width: 390px)">
+    <link rel="stylesheet" href="assets/css/media_min-390.css" media="(min-width: 390px)">
     <title>Gerenciador de Tarefas</title>
 </head>
 <body>
     <!--Pesquisar-->
     <header class="cabeçalho">
-        <h1>Gerenciador de Tarefas v1.0</h1>
+        <h1>Gerenciador de Tarefas v2.0</h1>
         <div class="pesquisar">
             <input type="search" oninput="pesquisar()" id="pesquisar" placeholder="Pesquisa suas tarefas...">
             <button onclick="pesquisar()" class="buscar">buscar</button>
@@ -47,7 +49,6 @@
                         <option value="Pendente">Pendente</option>
                         <option value="Concluída">Concluída</option>
                     </select><br>
-                    <br>
                     <!--Botão de Adicionar tarefa-->
                     <div class="adicionar">
                         <button type="submit" class="adicionarTarefa">Adicionar Tarefa</button>
