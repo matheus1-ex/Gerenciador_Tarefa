@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
     --fundo: #eef2ff;
@@ -26,10 +26,212 @@ body {
     font-family: 'Poppins', Arial, sans-serif;
     color: var(--texto);
     background:
-        radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), transparent 34rem),
-        radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.22), transparent 32rem),
+        radial-gradient(circle at top left, rgba(79, 70, 229, 0.28), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.26), transparent 32rem),
         linear-gradient(135deg, var(--fundo), var(--fundo-escuro));
     padding: 32px 18px 18px;
+}
+
+.login-page {
+    width: min(1120px, 100%);
+    min-height: calc(100vh - 50px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 34px;
+}
+
+.login-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 620px;
+    border-radius: 34px;
+    padding: 54px;
+    color: #fff;
+    background:
+        linear-gradient(135deg, rgba(15, 23, 42, 0.24), rgba(15, 23, 42, 0.02)),
+        linear-gradient(135deg, #4f46e5, #06b6d4);
+    box-shadow: 0 28px 65px rgba(37, 99, 235, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.login-hero::before,
+.login-hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.login-hero::before {
+    width: 260px;
+    height: 260px;
+    top: -70px;
+    right: -70px;
+}
+
+.login-hero::after {
+    width: 150px;
+    height: 150px;
+    left: 48px;
+    top: 74px;
+    box-shadow: 240px 120px 0 rgba(255, 255, 255, 0.08);
+}
+
+.login-badge,
+.app-badge {
+    width: fit-content;
+    border-radius: 999px;
+    padding: 9px 15px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+}
+
+.login-hero h1 {
+    position: relative;
+    margin-top: 24px;
+    max-width: 620px;
+    font-size: clamp(2.8rem, 7vw, 5.3rem);
+    line-height: 0.94;
+    letter-spacing: -3px;
+    text-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+.login-hero p {
+    position: relative;
+    max-width: 560px;
+    margin: 24px 0 32px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.05rem;
+}
+
+.login-stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.login-stats div {
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
+    padding: 17px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+}
+
+.login-stats strong,
+.login-stats span {
+    display: block;
+}
+
+.login-stats strong {
+    font-size: 1.1rem;
+}
+
+.login-stats span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.84rem;
+}
+
+.login-card {
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 34px;
+    padding: 42px;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: var(--sombra);
+    backdrop-filter: blur(18px);
+}
+
+.login-card-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.login-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    box-shadow: 0 16px 28px rgba(79, 70, 229, 0.24);
+}
+
+.login-card-top p {
+    color: var(--texto-suave);
+    font-weight: 700;
+}
+
+.login-card h2 {
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    color: var(--primaria-escura);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-form label,
+#FormTarefa label {
+    color: var(--texto-suave);
+    font-weight: 700;
+}
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 6px 0 10px;
+    font-size: 0.9rem;
+}
+
+.lembrar-login {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lembrar-login input {
+    width: auto;
+}
+
+.login-options a {
+    color: var(--primaria);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-button {
+    color: #fff;
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    box-shadow: 0 16px 28px rgba(79, 70, 229, 0.26);
+}
+
+.login-message {
+    min-height: 24px;
+    color: var(--sucesso);
+    font-weight: 700;
+    text-align: center;
+}
+
+.app-page[hidden] {
+    display: none;
 }
 
 .cabeçalho,
@@ -50,6 +252,7 @@ body {
 
 .cabeçalho h1,
 .cabe��alho h1 {
+    margin-top: 12px;
     font-size: clamp(1.8rem, 4vw, 3rem);
     line-height: 1.1;
     max-width: 560px;
@@ -174,8 +377,6 @@ button:active {
 }
 
 #FormTarefa label {
-    color: var(--texto-suave);
-    font-weight: 700;
     margin-top: 8px;
 }
 
@@ -223,7 +424,8 @@ button:active {
     gap: 16px;
 }
 
-#HistoricoTarefas > div{
+#HistoricoTarefas .historico,
+#HistoricoTarefas > div {
     width: 100%;
     padding: 20px;
     border-radius: 18px;
@@ -266,7 +468,7 @@ button:active {
     margin-top: 4px;
 }
 
-#HistoricoTarefas button{
+#HistoricoTarefas button {
     padding: 10px 18px;
     display: flex;
     align-items: center;
@@ -284,6 +486,7 @@ button:active {
     background: #fee2e2;
     color: #991b1b;
 }
+
 #resultado > div {
     border-left: 6px solid var(--primaria);
     border-radius: 18px;
@@ -309,9 +512,22 @@ footer {
     font-weight: 600;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 860px) {
     body {
         padding-top: 18px;
+    }
+
+    .login-page {
+        grid-template-columns: 1fr;
+    }
+
+    .login-hero {
+        min-height: auto;
+        padding: 34px;
+    }
+
+    .login-hero h1 {
+        letter-spacing: -1.5px;
     }
 
     .cabeçalho,
@@ -320,17 +536,8 @@ footer {
         align-items: stretch;
         padding: 24px;
     }
-    
-    .pesquisar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 99%;
-    }
-    
 
-    .pesquisar input,
-    .pesquisar button{
+    .pesquisar {
         width: 100%;
     }
 
@@ -344,3 +551,24 @@ footer {
     }
 }
 
+@media (max-width: 560px) {
+    body {
+        padding: 12px;
+    }
+
+    .login-card,
+    .login-hero {
+        border-radius: 26px;
+        padding: 26px;
+    }
+
+    .login-stats,
+    .Info {
+        grid-template-columns: 1fr;
+    }
+
+    .login-options {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

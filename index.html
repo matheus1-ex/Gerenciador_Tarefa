@@ -3,71 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/stylo.css" media ="(min-width: 430px)">
-    <link rel="stylesheet" href="assets/css/media_max-390.css" media="(max-width: 390px)">
-    <link rel="stylesheet" href="assets/css/media_min-390.css" media="(min-width: 390px)">
+    <link rel="stylesheet" href="assets/css/stylo.css">
     <title>Gerenciador de Tarefas</title>
 </head>
 <body>
-    <!--Pesquisar-->
     <header class="cabeçalho">
-        <h1>Gerenciador de Tarefas v2.0</h1>
+        <div>
+            <span class="app-badge">Painel de tarefas</span>
+            <h1>Gerenciador de Tarefas v2.0</h1>
+        </div>
         <div class="pesquisar">
-            <input type="search" oninput="pesquisar()" id="pesquisar" placeholder="Pesquisa suas tarefas...">
+            <input type="search" oninput="pesquisar()" id="pesquisar" placeholder="Pesquise suas tarefas...">
             <button onclick="pesquisar()" class="buscar">buscar</button>
             <button onclick="mostrarTodos()" class="mostrar">mostrar todos</button>
-        </div>  
+        </div>
     </header>
 
-    <!--Assim que terminar os calculos do js, coloque -->
-        <div class="conteudo">
-            <div class="painelAtividades">
-                <form id="FormTarefa">
-                    <!--Título da Tarefa-->
-                    <label for="titulo">Titulo da tarefa</label><br>
-                    <input type="text" class="titulo"required id="titulo" placeholder="Sua tarefa..." name="titulo"><br>
+    <div class="conteudo">
+        <div class="painelAtividades">
+            <form id="FormTarefa">
+                <label for="titulo">Título da tarefa</label><br>
+                <input type="text" class="titulo" required id="titulo" placeholder="Sua tarefa..." name="titulo"><br>
 
-                    <!--Descirção da tarefa-->
-                    <label for="descricao">Digite a descrição da sua tarefa</label><br>
-                    <textarea  class="descricao" id="descricao" placeholder="Descirção da sua tarefa aqui..." required name="descricao" rows="6" cols="40"></textarea><br>
-                    
-                    <!--Data de criação da tarefa-->
-                    <label for="dia">Data de Criação: </label>
-                    <input type="date" id="dia" class="dia" name="dia" required><br>
-                    
-                    <!--Prioridades-->
-                    <label for="prioridades" class="tituloPrioridade">A prioridade da sua Tarefa é:</label>
-                    <select id="prioridade" class="prioridade" required>
-                        <option value="Alta">Alta</option>
-                        <option value="Média">Média</option>
-                        <option value="Baixa">Baixa</option>
-                    </select><br>
+                <label for="descricao">Digite a descrição da sua tarefa</label><br>
+                <textarea class="descricao" id="descricao" placeholder="Descrição da sua tarefa aqui..." required name="descricao" rows="6" cols="40"></textarea><br>
 
-                    <!--Status da tarefa-->
-                    <label>Status da tarefa: </label>
-                    <select name="status" class="status" id="status" required>
-                        <option value="Pendente">Pendente</option>
-                        <option value="Concluída">Concluída</option>
-                    </select><br>
-                    <!--Botão de Adicionar tarefa-->
-                    <div class="adicionar">
-                        <button type="submit" class="adicionarTarefa">Adicionar Tarefa</button>
-                    </div>
-                </form>
-            </div>
+                <label for="dia">Data de Criação: </label>
+                <input type="date" id="dia" class="dia" name="dia" required><br>
+
+                <label for="prioridade" class="tituloPrioridade">A prioridade da sua Tarefa é:</label>
+                <select id="prioridade" class="prioridade" required>
+                    <option value="Alta">Alta</option>
+                    <option value="Média">Média</option>
+                    <option value="Baixa">Baixa</option>
+                </select><br>
+
+                <label for="status">Status da tarefa: </label>
+                <select name="status" class="status" id="status" required>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Concluída">Concluída</option>
+                </select><br>
+
+                <div class="adicionar">
+                    <button type="submit" class="adicionarTarefa">Adicionar Tarefa</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <!--Painel de Histórico-->
-        <div class="tituloHistorico">
-            <h2>Tarefas...</h2>
-            <div id="PainelHistorico" class="PainelHistorico">
-                <div id="HistoricoTarefas"></div><br><br>
-            </div>
+    <div class="tituloHistorico">
+        <h2>Tarefas...</h2>
+        <div id="PainelHistorico" class="PainelHistorico">
+            <div id="HistoricoTarefas"></div><br><br>
         </div>
-        <section id="resultado" aria-live="polite"></section>
+    </div>
+    <section id="resultado" aria-live="polite"></section>
+
+    <footer>
+        <p>Desenvolvido por - Julio Matheus - RU: 5276013</p>
+    </footer>
+
     <script src="assets/js/funçoes.js"></script>
-<footer>
-    <p>Desenvolvido por - Julio Matheus - RU: 5276013</p>
-</footer>
 </body>
 </html>

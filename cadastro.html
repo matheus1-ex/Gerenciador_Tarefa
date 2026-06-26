@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se Já</title>
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+</head>
+<body>
+        <div class="container">
+            <div class="quadrado"></div>
+            <div class="form-box">
+                <!-- FORMULÁRIO DE CADASTRO -->
+                <form id="cadastroForm" class="form">
+                    <h2>Crie sua conta</h2>
+                    <br>
+                    <p class="subtitle">Preencha os dados abaixo</p>
+                    <div class="input-group"><br>
+                        <label for="cadNome">Nome completo</label><br>
+                        <input type="text" id="cadNome" placeholder="Seu nome" required>
+                    </div>
+
+                    <div class="input-group"><br>
+                        <label for="cadEmail">E-mail</label><br>
+                        <input type="email" id="cadEmail" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="input-group"><br>
+                        <label for="cadSenha">Senha</label><br>
+                        <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" required>
+                    </div>
+
+                    <div class="input-group"><br>
+                        <label for="cadConfirm">Confirmar senha</label><br>
+                        <input type="password" id="cadConfirm" placeholder="Repita a senha" required>
+                    </div><br>
+
+                    <div class="checkbox-termos">
+                            <input
+                                type="checkbox"
+                                id="termos"
+                                name="termos"
+                                required
+                            >
+
+                            <label for="termos">
+                                Li e concordo com os
+                                <a href="termos.html" target="_blank">
+                                    Termos de Uso
+                                </a>
+                                e com a
+                                <a href="privacidade.html" target="_blank">
+                                    Política de Privacidade
+                                </a>.
+                            </label>
+                    </div>
+
+                    <button type="submit" class="btn" href="login.html">Cadastrar</button>
+
+                    <p class="switch">
+                        Já tem conta? 
+                        <a href="#" onclick="trocarForm('login')">Entrar</a>
+                    </p>
+                </form>
+
+            </div>
+        </div>
+
+    <script>
+        function trocarForm(tipo) {
+            const login = document.getElementById('loginForm');
+            const cadastro = document.getElementById('cadastroForm');
+            if (tipo === 'cadastro') {
+                login.classList.remove('active');
+                cadastro.classList.add('active');
+            } else {
+                cadastro.classList.remove('active');
+                login.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>

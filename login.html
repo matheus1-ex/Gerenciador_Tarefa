@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Cadastro</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-box">
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form id="loginForm" class="form active">
+                <h2>Bem-vindo de volta!</h2>
+                <p class="subtitle">Faça login na sua conta</p>
+
+                <div class="input-group"><br>
+                    <label for="loginEmail">E-mail</label><br>
+                    <input type="email" id="loginEmail" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="input-group"><br>
+                    <label for="loginSenha">Senha</label><br>
+                    <input type="password" id="loginSenha" placeholder="••••••••" required>
+                </div>
+
+                <div class="options">
+                    <label class="checkbox">
+                        <input type="checkbox"> Lembrar de mim
+                    </label>
+                    <a href="#">Esqueci a senha</a>
+                </div>
+
+                <button type="submit" href="index.html" class="btn">Entrar</button>
+
+                <p class="switch">
+                    Não tem conta? 
+                    <a href="cadastro.html" onclick="trocarForm('cadastro')"> Cadastre-se</a>
+                </p>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        function trocarForm(tipo) {
+            const login = document.getElementById('loginForm');
+            const cadastro = document.getElementById('cadastroForm');
+            if (tipo === 'cadastro') {
+                login.classList.remove('active');
+                cadastro.classList.add('active');
+            } else {
+                cadastro.classList.remove('active');
+                login.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
