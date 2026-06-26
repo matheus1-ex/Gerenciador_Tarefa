@@ -412,7 +412,7 @@ button:active {
 }
 
 .PainelHistorico {
-    min-height: 150px;
+    min-width: 100px;
     border: 1px dashed rgba(79, 70, 229, 0.28);
     border-radius: 18px;
     background: rgba(248, 250, 252, 0.74);
@@ -421,9 +421,11 @@ button:active {
 
 #HistoricoTarefas {
     display: grid;
+    overflow-y: auto;
+    max-height: 500px;
     gap: 16px;
-}
 
+}
 #HistoricoTarefas .historico,
 #HistoricoTarefas > div {
     width: 100%;

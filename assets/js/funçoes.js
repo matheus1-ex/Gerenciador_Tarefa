@@ -1,44 +1,6 @@
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 let editarId = null;
 
-const loginPage = document.getElementById("loginPage");
-const appPage = document.getElementById("appPage");
-const formLogin = document.getElementById("FormLogin");
-const loginMessage = document.getElementById("loginMessage");
-
-function entrarNoApp(){
-    loginPage.hidden = true;
-    appPage.hidden = false;
-    listarTarefas();
-}
-
-if(localStorage.getItem("loginAtivo") === "true"){
-    entrarNoApp();
-}
-
-formLogin.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const usuario = document.getElementById("usuario").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const lembrarLogin = document.getElementById("lembrarLogin").checked;
-
-    if(!usuario || !senha){
-        loginMessage.textContent = "Preencha usuário e senha para entrar.";
-        loginMessage.style.color = "#dc2626";
-        return;
-    }
-
-    if(lembrarLogin){
-        localStorage.setItem("loginAtivo", "true");
-    }
-
-    loginMessage.textContent = "Login realizado com sucesso!";
-    loginMessage.style.color = "#16a34a";
-
-    setTimeout(entrarNoApp, 550);
-});
-
 function salvarLocal(){
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
