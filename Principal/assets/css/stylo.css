@@ -426,6 +426,7 @@ button:active {
     gap: 16px;
 
 }
+
 #HistoricoTarefas .historico,
 #HistoricoTarefas > div {
     width: 100%;
@@ -440,11 +441,11 @@ button:active {
 
 #HistoricoTarefas h4 {
     font-size: 1.2rem;
-    color: var(--primaria-escura);
+    color: red;
 }
 
 #HistoricoTarefas p {
-    color: var(--texto-suave);
+    color: red;
 }
 
 .Info {
