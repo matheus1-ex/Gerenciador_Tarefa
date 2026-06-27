@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se Já</title>
-    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="../assets/css/cadastro.css">
 </head>
 <body>
         <div class="container">
@@ -17,22 +17,22 @@
                     <p class="subtitle">Preencha os dados abaixo</p>
                     <div class="input-group"><br>
                         <label for="cadNome">Nome completo</label><br>
-                        <input type="text" id="cadNome" placeholder="Seu nome" required>
+                        <input type="text" id="cadNome" placeholder="Seu nome" required onchange="toggleButton()">
                     </div>
 
                     <div class="input-group"><br>
                         <label for="cadEmail">E-mail</label><br>
-                        <input type="email" id="cadEmail" placeholder="seu@email.com" required>
+                        <input type="email" id="cadEmail" placeholder="seu@email.com" required onchange="toggleButton()">
                     </div>
 
                     <div class="input-group"><br>
                         <label for="cadSenha">Senha</label><br>
-                        <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" required>
+                        <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" required onchange="toggleButton()">
                     </div>
 
                     <div class="input-group"><br>
                         <label for="cadConfirm">Confirmar senha</label><br>
-                        <input type="password" id="cadConfirm" placeholder="Repita a senha" required>
+                        <input type="password" id="cadConfirm" placeholder="Repita a senha" required onchange="toggleButton()">
                     </div><br>
 
                     <div class="checkbox-termos">
@@ -40,7 +40,7 @@
                                 type="checkbox"
                                 id="termos"
                                 name="termos"
-                                required
+                                onchange="toggleButton()"
                             >
 
                             <label for="termos">
@@ -55,7 +55,7 @@
                             </label>
                     </div>
 
-                    <button type="submit" class="btn" href="login.html" onclick="Cadastrar()">Cadastrar</button>
+                    <button class="btn" id="btn" disabled>Cadastrar</button>
 
                     <p class="switch">
                         Já tem conta? 
@@ -66,19 +66,7 @@
             </div>
         </div>
 
-    <script>
-        function trocarForm(tipo) {
-            const login = document.getElementById('loginForm');
-            const cadastro = document.getElementById('cadastroForm');
-            if (tipo === 'cadastro') {
-                login.classList.remove('active');
-                cadastro.classList.add('active');
-            } else {
-                cadastro.classList.remove('active');
-                login.classList.add('active');
-            }
-        }
-    </script>
+    <script src="../assets/js/cadastro.js"></script>
 
 </body>
 </html>

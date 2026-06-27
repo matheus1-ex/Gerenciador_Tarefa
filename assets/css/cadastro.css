@@ -62,21 +62,30 @@ body {
     border-radius: var(--raio);
 }
 
-.form-box .btn{
+button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--botão);
+    background: rgb(10, 63, 255);
     width: 289px;
     color: var(--texto-botão);
     border: none;
     padding: 0.5rem;
-    border-radius: var(--raio);
     cursor: pointer;
+    border-radius: var(--raio);
     font-family: 'Poppins', Arial, sans-serif;
     box-shadow: var(--sombra);
 }
 
+button:disabled {
+    background-color: #555;
+    cursor: default;
+    opacity: 0.4;
+}
+
+button:disabled:hover {
+    background-color: rgb(82, 82, 82);
+}
 .form-box .switch{
     display: flex;
     justify-content: flex-start;
