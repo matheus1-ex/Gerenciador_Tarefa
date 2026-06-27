@@ -65,6 +65,7 @@ body {
 .switch {
     display: flex;
     align-items: center;
+    gap: 9px;
     margin-top: 18px;
     justify-content: center;
 }
