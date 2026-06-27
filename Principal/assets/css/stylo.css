@@ -441,11 +441,11 @@ button:active {
 
 #HistoricoTarefas h4 {
     font-size: 1.2rem;
-    color: red;
+    color: var(--primaria-escura);
 }
 
 #HistoricoTarefas p {
-    color: red;
+    color: var(--primaria);
 }
 
 .Info {
