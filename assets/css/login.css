@@ -57,6 +57,7 @@ body {
     position: relative;
     z-index: 1;
     display: flex;
+    overflow: hidden;
     margin: 0px;
     background: var(--cartao);
     padding: 2rem;
@@ -74,7 +75,32 @@ body {
     border-radius: var(--raio);
 }
 
-.form-box .btn{
+.form-box .c1 {
+    display: flex;
+    position: absolute;
+    background-color: #2357e7;
+    z-index: -1;
+    right: -90px;
+    top: 33%;
+    opacity: 33%;
+    width: 350px;
+    height: 350px;
+    border-radius: 200px;
+}
+
+.c1 .c2 {
+    display: flex;
+    position: relative;
+    background-color: #3effec;
+    right: 30px;
+    top: -4%;
+    z-index: -1;
+    width: 310px;
+    height: 310px;
+    border-radius: 200px;
+}
+
+button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,6 +114,16 @@ body {
     font-family: 'Poppins', Arial, sans-serif;
     box-shadow: var(--sombra);
     margin-top: 10px;
+}
+
+button:disabled {
+    background-color: #64748b;
+    cursor: default;
+    opacity: 0.3px;
+}
+
+button:disabled:hover {
+    background-color: #787878;
 }
 
 .form-box .checkbox {
