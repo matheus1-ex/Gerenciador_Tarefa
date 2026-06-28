@@ -1,5 +1,7 @@
+
+
 function toggleButton(){
-    const nome = document.querySelector("#cadNome").value;
+    const nome = document.getElementById("cadNome").querySelector.value;
     const email = document.querySelector("#cadEmail").value;
     const senha = document.querySelector("#cadSenha").value;
     const confirmarSenha = document.querySelector("#cadConfirm").value;
@@ -8,8 +10,7 @@ function toggleButton(){
     const form = document.querySelector("#cadastroForm");
     form.addEventListener("submit", function(event){
         event.preventDefault();
-        let nome1 = document.getElementById("#cadNome").value;
-        localStorage.setItem("nome", nome1);
+        localStorage.setItem("nome", nome);
         window.location.href = "https://matheus1-ex.github.io/Gerenciador_Tarefa/login/index.html";
     });
     if (termos.checked && nome !== "" && email !== "" && senha !== "" && confirmarSenha !== "") {

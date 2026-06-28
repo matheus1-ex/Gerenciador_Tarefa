@@ -1,6 +1,13 @@
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 let editarId = null;
 
+let nome1 = localStorage.getItem("nome");
+document.getElementById("usuario").textContent = nome1;
+
+function siteOficial() {
+    window.location.href = "https://matheus1-ex.github.io/Gerenciador_Tarefa/login/index.html";
+}
+
 function salvarLocal(){
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
@@ -181,9 +188,7 @@ document.getElementById("FormTarefa").addEventListener("submit", function(e){
     }
 
     salvarLocal();
+    siteOficial();
     listarTarefas();
     this.reset();
 });
-
-localStorage.getItem("nome");
-document.getElementById("#usuario").textContent = nome;

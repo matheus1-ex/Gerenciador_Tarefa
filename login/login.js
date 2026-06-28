@@ -2,7 +2,6 @@ function mudar(){
     const email = document.querySelector("#Email").value;
     const senha = document.querySelector("#Senha").value;
     const lembrete = document.querySelector("#lembrar");
-
     const form = document.querySelector("#loginForm");
     form.addEventListener("submit", function(event){
         event.preventDefault();
