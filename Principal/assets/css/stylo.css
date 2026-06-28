@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+@keyframes abrir {
+    from {
+        width: 0;
+    }
+    to {
+        width: 190px;
+    }
+}
+
 :root {
     --fundo: #eef2ff;
     --fundo-escuro: #dbeafe;
@@ -230,8 +239,49 @@ body {
     text-align: center;
 }
 
-.app-page[hidden] {
+.cabeçalho{
+    overflow: hidden;
+}
+.perfil {
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    top: -2px;
+    background-color: white;
+    box-shadow: #1d3463c5 0px 0px 50px -3px;
+    width: 70px;
+    height: 40px;
+    border-radius: 90px;
+    transition: width 1s ease-out;
+}
+.btn2 {
     display: none;
+}
+.perfil:hover{
+    width: 170px;
+    transition: width 1s ease;
+
+}
+.perfil:hover h4{
+    display: flex;
+    align-items: flex-end;
+    padding: 8px 0px 0px 13px;
+    color: #172033;
+}
+
+.perfil:hover .btn2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #991b1b;
+    padding: 0;
+    margin: -20px 100px 30px;
+    color: #ffffff;
+    font-size: 10px;
+    text-align: center;
+    width: 50px;
+    height: 19px;
 }
 
 .cabeçalho,

@@ -184,3 +184,6 @@ document.getElementById("FormTarefa").addEventListener("submit", function(e){
     listarTarefas();
     this.reset();
 });
+
+localStorage.getItem("nome");
+document.getElementById("#usuario").textContent = nome;
