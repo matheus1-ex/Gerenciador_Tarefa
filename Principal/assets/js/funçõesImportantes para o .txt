@@ -1,0 +1,15 @@
+if(editarId !== null){
+        let tarefa = tarefas.find(t => t.Id_Tarefa === editarId);
+        if(tarefa){
+            tarefa.titulo = titulo;
+            tarefa.descricao = descricao;
+            tarefa.dia = dia;
+            tarefa.prioridade = prioridade;
+            tarefa.status = status;
+        }
+        editarId = null;
+        document.querySelector(".adicionarTarefa").textContent = "Adicionar Tarefa";
+    } else {
+        const Id_Tarefa = Date.now();
+        tarefas.push({ Id_Tarefa, titulo, descricao, dia, prioridade, status });
+    }

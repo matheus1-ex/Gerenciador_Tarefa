@@ -31,6 +31,7 @@ function editar(Id_Tarefa){
     if(!tarefa) return;
 
     document.getElementById("titulo").value = tarefa.titulo;
+    document.getElementById("arquivo").value = tarefa.arquivo;
     document.getElementById("descricao").value = tarefa.descricao;
     document.getElementById("dia").value = tarefa.dia;
     document.getElementById("prioridade").value = tarefa.prioridade;
@@ -66,6 +67,9 @@ function listarTarefas(lista = tarefas){
 
         let respostaTitulo = document.createElement("h4");
         respostaTitulo.textContent = tarefa.titulo;
+
+        let arquivo = document.createElement("file");
+        arquivo.textContent = tarefa.arquivo;
 
         let descrição = document.createElement("p");
         descrição.textContent = tarefa.descricao;
@@ -143,6 +147,7 @@ function listarTarefas(lista = tarefas){
         }
 
         cardHIstorico.appendChild(respostaTitulo);
+        cardHIstorico.appendChild(arquivo);
         cardHIstorico.appendChild(descrição);
         Info.appendChild(Info_Status);
         Info.appendChild(Prioridade);
@@ -157,38 +162,34 @@ function listarTarefas(lista = tarefas){
 
 listarTarefas();
 
-document.getElementById("FormTarefa").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    let titulo = document.getElementById("titulo").value;
-    let descricao = document.getElementById("descricao").value;
-    let dia = document.getElementById("dia").value;
-    let prioridade = document.getElementById("prioridade").value;
-    let status = document.getElementById("status").value;
-
-    if(editarId){
-        tarefas = tarefas.map(t =>
-            t.Id_Tarefa == editarId
-            ? { ...t, titulo, descricao, dia, prioridade, status }
-            : t
-        );
+const form = document.getElementById("FormTarefa");
+form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const titulo = document.getElementById("titulo").value;
+    const arquivo = document.getElementById("arquivo").value;
+    const descricao = document.getElementById("descricao").value;
+    const dia = document.getElementById("dia").value;
+    const prioridade = document.getElementById("prioridade").value;
+    const status = document.getElementById("status").value;
+    
+    if(editarId !== null){
+        let tarefa = tarefas.find(t => t.Id_Tarefa === editarId);
+        if(tarefa){
+            tarefa.titulo = titulo;
+            tarefa.arquivo = arquivo;
+            tarefa.descricao = descricao;
+            tarefa.dia = dia;
+            tarefa.prioridade = prioridade;
+            tarefa.status = status;
+        }
         editarId = null;
         document.querySelector(".adicionarTarefa").textContent = "Adicionar Tarefa";
+    } else {
+        const Id_Tarefa = Date.now();
+        tarefas.push({ Id_Tarefa, titulo, arquivo, descricao, dia, prioridade, status });
     }
-    else{
-        let tarefa = {
-            Id_Tarefa: Date.now(),
-            titulo,
-            descricao,
-            dia,
-            prioridade,
-            status
-        };
-        tarefas.push(tarefa);
-    }
-
     salvarLocal();
-    siteOficial();
     listarTarefas();
-    this.reset();
+    form.reset();
+
 });
