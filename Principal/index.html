@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/stylo.css">
     <title>Gerenciador de Tarefas</title>
 </head>
+
 <body>
     <header class="cabeçalho">
         <div>
             <div class="perfil">
                 <h4>Olá <br><span id="usuario"></span></h4>
-                <button  type="button"   onclick="siteOficial()" class="btn2" id="btn2">sair</button>
+                <button type="button" onclick="siteOficial()" class="btn2" id="btn2">sair</button>
             </div>
             <h1>Gerenciador de Tarefas v2.0</h1>
         </div>
@@ -25,16 +27,18 @@
     <div class="conteudo">
         <div class="painelAtividades">
             <form id="FormTarefa">
-                <label for="arquivo">Sua Tarefa</label><br>
-                <input type="file" class="arquivo" required id="arquivo" placeholder="Envie sua tarefa  para automatizar" name="titulo"><br>
+                <label for="titulo">Sua Tarefa (Título)</label><br>
+                <input type="text" class="arquivo" required id="titulo" placeholder="Digite o título da tarefa"
+                    name="titulo"><br>
 
-                <label for="arquivo">Selecione a tarefa que quer automatizar...</label><br>
+                <label for="arquivo">Selecione o arquivo para anexar (Opcional)</label><br>
                 <input type="file" class="arquivo" id="arquivo" name="arquivo"><br>
 
                 <label for="descricao">Digite a descrição da sua tarefa</label><br>
-                <textarea class="descricao" id="descricao" placeholder="Descrição da sua tarefa aqui..." required name="descricao" rows="6" cols="40"></textarea><br>
+                <textarea class="descricao" id="descricao" placeholder="Descrição da sua tarefa aqui..." required
+                    name="descricao" rows="6" cols="40"></textarea><br>
 
-                <label for="dia">Data de Criação: </label>
+                <label for="dia">Data da Tarefa: </label>
                 <input type="date" id="dia" class="dia" name="dia" required><br>
 
                 <label for="prioridade" class="tituloPrioridade">A prioridade da sua Tarefa é:</label>
@@ -71,4 +75,5 @@
 
     <script src="assets/js/funçoes.js"></script>
 </body>
+
 </html>

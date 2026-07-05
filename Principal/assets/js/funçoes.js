@@ -1,21 +1,43 @@
-let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
-let editarId = null;
+let tarefas = [];
 
 let nome1 = localStorage.getItem("nome");
-document.getElementById("usuario").textContent = nome1;
+document.getElementById("usuario").textContent = nome1 || "Usuário";
 
 function siteOficial() {
-    window.location.href = "https://matheus1-ex.github.io/Gerenciador_Tarefa/login/index.html";
+    window.location.href = "../login/index.html"; // Ajustado para voltar localmente
 }
 
-function salvarLocal(){
-    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+// BUSCAR TAREFAS DO BACKEND (GET)
+async function carregarTarefasDoBanco() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/tarefas/");
+        if (response.ok) {
+            tarefas = await response.json();
+            listarTarefas(tarefas);
+        } else {
+            console.error("Falha ao buscar tarefas do servidor");
+        }
+    } catch (error) {
+        console.error("Erro ao conectar no servidor para buscar tarefas:", error);
+    }
 }
 
-function excluir(Id_Tarefa){
-    tarefas = tarefas.filter(tarefa => tarefa.Id_Tarefa !== Id_Tarefa);
-    salvarLocal();
-    listarTarefas();
+// EXCLUIR TAREFA NO BACKEND (DELETE)
+async function excluir(id) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/tarefas/${id}`, {
+            method: "DELETE"
+        });
+        if (response.ok) {
+            // Remove da lista local e atualiza a tela
+            tarefas = tarefas.filter(tarefa => tarefa.id !== id);
+            listarTarefas();
+        } else {
+            alert("Erro ao deletar tarefa no servidor.");
+        }
+    } catch (error) {
+        console.error("Erro na conexão:", error);
+    }
 }
 
 function pesquisar(){
@@ -25,22 +47,6 @@ function pesquisar(){
     listarTarefas(resultado);
 }
 
-function editar(Id_Tarefa){
-    let tarefa = tarefas.find(t => t.Id_Tarefa == Id_Tarefa);
-
-    if(!tarefa) return;
-
-    document.getElementById("titulo").value = tarefa.titulo;
-    document.getElementById("arquivo").value = tarefa.arquivo;
-    document.getElementById("descricao").value = tarefa.descricao;
-    document.getElementById("dia").value = tarefa.dia;
-    document.getElementById("prioridade").value = tarefa.prioridade;
-    document.getElementById("status").value = tarefa.status;
-    editarId = Id_Tarefa;
-    document.querySelector(".adicionarTarefa").textContent = "Salvar alteração";
-    document.getElementById("titulo").focus();
-}
-
 function mostrarTodos(){
     document.getElementById("pesquisar").value = "";
     listarTarefas(tarefas);
@@ -48,7 +54,6 @@ function mostrarTodos(){
 
 function listarTarefas(lista = tarefas){
     let historicoTarefa = document.getElementById("HistoricoTarefas");
-
     if(!historicoTarefa) return;
 
     historicoTarefa.innerHTML = "";
@@ -68,9 +73,6 @@ function listarTarefas(lista = tarefas){
         let respostaTitulo = document.createElement("h4");
         respostaTitulo.textContent = tarefa.titulo;
 
-        let arquivo = document.createElement("file");
-        arquivo.textContent = tarefa.arquivo;
-
         let descrição = document.createElement("p");
         descrição.textContent = tarefa.descricao;
 
@@ -78,7 +80,7 @@ function listarTarefas(lista = tarefas){
         Info.classList.add("Info");
 
         let Info_Status = document.createElement("div");
-        Info_Status.textContent = tarefa.status;
+        Info_Status.textContent = tarefa.status || "Pendente";
         Info_Status.style.color = "white";
         Info_Status.style.fontSize = "13px";
         Info_Status.style.display = "flex";
@@ -89,15 +91,14 @@ function listarTarefas(lista = tarefas){
             Info_Status.style.width = "89px";
             Info_Status.style.borderRadius = "10px";
             Info_Status.style.backgroundColor = "#02c20f";
-        }
-        else {
+        } else {
             Info_Status.style.width = "89px";
             Info_Status.style.borderRadius = "10px";
             Info_Status.style.backgroundColor = "#c28500";
         }
 
         let Data = document.createElement("div");
-        Data.textContent = tarefa.dia;
+        Data.textContent = tarefa.data_tarefa; // Campo esperado pelo seu schema do FastAPI
         Data.style.color = "white";
         Data.style.fontSize = "13px";
         Data.style.display = "flex";
@@ -115,15 +116,8 @@ function listarTarefas(lista = tarefas){
         bntExcluir.textContent = "excluir";
 
         bntExcluir.addEventListener("click", () => {
-            excluir(tarefa.Id_Tarefa);
+            excluir(tarefa.id); // 'id' vindo do banco Postgres
         });
-
-        let btnEditar = document.createElement("button");
-        btnEditar.classList.add("editar")
-        btnEditar.textContent = "editar";
-        btnEditar.addEventListener("click", () => {
-            editar(tarefa.Id_Tarefa);
-        })
 
         let Prioridade = document.createElement("div");
         Prioridade.textContent = tarefa.prioridade;
@@ -137,59 +131,61 @@ function listarTarefas(lista = tarefas){
 
         if(Prioridade.textContent === "Alta"){
             Prioridade.style.backgroundColor = "#097a1c";
-        }
-        else if(Prioridade.textContent === "Média"){
+        } else if(Prioridade.textContent === "Média"){
             Prioridade.style.backgroundColor = "#cb6003";
-        }
-
-        else if(Prioridade.textContent === "Baixa"){
+        } else if(Prioridade.textContent === "Baixa"){
             Prioridade.style.backgroundColor = "#dc1313";
         }
 
         cardHIstorico.appendChild(respostaTitulo);
-        cardHIstorico.appendChild(arquivo);
         cardHIstorico.appendChild(descrição);
         Info.appendChild(Info_Status);
         Info.appendChild(Prioridade);
         Info.appendChild(Data);
         cardHIstorico.appendChild(Info);
-        btns.appendChild(btnEditar);
         btns.appendChild(bntExcluir);
         cardHIstorico.appendChild(btns);
         historicoTarefa.appendChild(cardHIstorico);
     });
 }
 
-listarTarefas();
-
+// CRIAR NOVA TAREFA NO BACKEND (POST)
 const form = document.getElementById("FormTarefa");
 form.addEventListener("submit", async function(event) {
     event.preventDefault();
+    
     const titulo = document.getElementById("titulo").value;
-    const arquivo = document.getElementById("arquivo").value;
     const descricao = document.getElementById("descricao").value;
     const dia = document.getElementById("dia").value;
     const prioridade = document.getElementById("prioridade").value;
-    const status = document.getElementById("status").value;
-    
-    if(editarId !== null){
-        let tarefa = tarefas.find(t => t.Id_Tarefa === editarId);
-        if(tarefa){
-            tarefa.titulo = titulo;
-            tarefa.arquivo = arquivo;
-            tarefa.descricao = descricao;
-            tarefa.dia = dia;
-            tarefa.prioridade = prioridade;
-            tarefa.status = status;
-        }
-        editarId = null;
-        document.querySelector(".adicionarTarefa").textContent = "Adicionar Tarefa";
-    } else {
-        const Id_Tarefa = Date.now();
-        tarefas.push({ Id_Tarefa, titulo, arquivo, descricao, dia, prioridade, status });
-    }
-    salvarLocal();
-    listarTarefas();
-    form.reset();
 
+    const payload = {
+        titulo: titulo,
+        descricao: descricao,
+        data_tarefa: dia, // Alinhado com TarefaCreate do main.py
+        prioridade: prioridade
+    };
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/tarefas/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            form.reset();
+            await carregarTarefasDoBanco(); // Recarrega a lista atualizada do PostgreSQL
+        } else {
+            alert("Erro ao salvar tarefa no servidor.");
+        }
+    } catch (error) {
+        console.error("Erro crítico ao salvar tarefa:", error);
+        alert("Não foi possível conectar ao servidor backend.");
+    }
 });
+
+// Inicializa a página buscando os dados reais do banco
+carregarTarefasDoBanco();
