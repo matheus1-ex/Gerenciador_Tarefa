@@ -10,29 +10,28 @@
         <div class="container">
             <div class="quadrado"></div>
             <div class="form-box">
-                <!-- FORMULÁRIO DE CADASTRO -->
                 <form id="cadastroForm" class="form">
                     <h2>Crie sua conta</h2>
                     <br>
                     <p class="subtitle">Preencha os dados abaixo</p>
                     <div class="input-group"><br>
                         <label for="cadNome">Nome completo</label><br>
-                        <input type="text" id="cadNome" placeholder="Seu nome" required onchange="toggleButton()">
+                        <input type="text" id="cadNome" placeholder="Seu nome" required oninput="toggleButton()">
                     </div>
 
                     <div class="input-group"><br>
                         <label for="cadEmail">E-mail</label><br>
-                        <input type="email" id="cadEmail" placeholder="seu@email.com" required onchange="toggleButton()">
+                        <input type="email" id="cadEmail" placeholder="seu@email.com" required oninput="toggleButton()">
                     </div>
 
                     <div class="input-group"><br>
                         <label for="cadSenha">Senha</label><br>
-                        <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" required onchange="toggleButton()">
+                        <input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" required oninput="toggleButton()">
                     </div>
 
                     <div class="input-group"><br>
                         <label for="cadConfirm">Confirmar senha</label><br>
-                        <input type="password" id="cadConfirm" placeholder="Repita a senha" required onchange="toggleButton()">
+                        <input type="password" id="cadConfirm" placeholder="Repita a senha" required oninput="toggleButton()">
                     </div><br>
 
                     <div class="checkbox-termos">
@@ -45,11 +44,11 @@
 
                             <label for="termos">
                                 Li e concordo com os
-                                <a href="https://matheus1-ex.github.io/Gerenciador_Tarefa/termos/index.html" target="_blank">
+                                <a href="../termos/index.html" target="_blank">
                                     Termos de Uso
                                 </a>
                                 e com a
-                                <a href="https://matheus1-ex.github.io/Gerenciador_Tarefa/privacidade/index.html" target="_blank">
+                                <a href="../privacidade/index.html" target="_blank">
                                     Política de Privacidade
                                 </a>.
                             </label>
@@ -59,7 +58,7 @@
 
                     <p class="switch">
                         Já tem conta? 
-                        <a href="https://matheus1-ex.github.io/Gerenciador_Tarefa/login/index.html">Entrar</a>
+                        <a href="../login/index.html">Entrar</a>
                     </p>
                 </form>
 
