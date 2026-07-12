@@ -180,18 +180,18 @@ const prev=s=>order[Math.max(order.indexOf(s)-1,0)];
 
 // Base da API. Atrás do proxy HTTPS o launcher injeta "/api" (mesma origem ->
 // sem CORS, sem conteúdo misto). Sem injeção, cai num palpite (modo simples).
-const BAKED="__API_BASE__";
-let API=localStorage.getItem("cloudtask_api")||(BAKED&&!BAKED.startsWith("__")?BAKED:"")||(location.protocol+"//"+location.hostname+":8000");
-let TOKEN=localStorage.getItem("cloudtask_token")||"";
-let ATT=JSON.parse(localStorage.getItem("cloudtask_att")||"{}"); // {taskId:[filenames]}
+const BAKED="http://127.0.0.1:8000/";
+let API=localStorage.getItem("projetocloud_api")||("http://127.0.0.1:8000/");
+let TOKEN=localStorage.getItem("projetocloud_token")||"";
+let ATT=JSON.parse(localStorage.getItem("projetocloud_att")||"{}"); // {taskId:[filenames]}
 let TASKS=[];
 
 function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),2300);}
 function esc(s){return (s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function saveAtt(){localStorage.setItem("cloudtask_att",JSON.stringify(ATT));}
+function saveAtt(){localStorage.setItem("projetocloud_att",JSON.stringify(ATT));}
 function setApiLabel(){$("#apiLabel").textContent="API: "+API;}
 function openCfg(){$("#cfg-url").value=API;dlgCfg.showModal();}
-function saveCfg(){API=$("#cfg-url").value.trim().replace(/\/$/,"");localStorage.setItem("cloudtask_api",API);dlgCfg.close();setApiLabel();if(TOKEN)loadAll();}
+function saveCfg(){API=$("#cfg-url").value.trim().replace(/\/$/,"");localStorage.setItem("projetocloud_api",API);dlgCfg.close();setApiLabel();if(TOKEN)loadAll();}
 
 // ---- fetch com TIMEOUT (AbortController): nenhuma chamada trava a tela ----
 // Rastreia as requisições em voo para poder CANCELAR todas no logout (senão uma
@@ -225,7 +225,7 @@ async function doLogin(btn){
     const r=await tfetch(API+"/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({username:$("#lg-user").value,password:$("#lg-pass").value})});
     if(!r.ok){$("#lg-err").textContent=r.status===401?"Usuário ou senha inválidos.":"Erro "+r.status;if(btn)btn.disabled=false;return;}
-    const d=await r.json();localStorage.setItem("cloudtask_token",d.access_token);
+    const d=await r.json();localStorage.setItem("projetocloud_token",d.access_token);
     // Em vez de uma transição via JS (que em alguns navegadores deixava a tela
     // sem responder), recarregamos: a página entra pela via "boot com token",
     // 100% limpa e comprovadamente estável.
@@ -234,7 +234,7 @@ async function doLogin(btn){
 }
 function logout(){
   abortAll();                                  // cancela requisições em voo
-  TOKEN="";localStorage.removeItem("cloudtask_token");
+  TOKEN="";localStorage.removeItem("projetocloud_token");
   // Recarrega para o login com estado 100% limpo (sem travas/modais presos).
   location.reload();
 }

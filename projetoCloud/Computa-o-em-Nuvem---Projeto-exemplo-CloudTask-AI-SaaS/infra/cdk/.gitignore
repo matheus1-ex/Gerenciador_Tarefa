@@ -1,5 +1,0 @@
-# Artefatos do CDK (gerados) — não versionar.
-.venv/
-__pycache__/
-cdk.out/
-*.pyc

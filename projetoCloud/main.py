@@ -97,7 +97,7 @@ def deletar_tarefa(tarefa_id: int, db: Session = Depends(database.get_db)):
     db.commit()
     return {"mensagem": f"Tarefa {tarefa_id} deletada com sucesso!"}
 
-BUCKET_NAME = os.getenv("AWS_BUCKET_NAME", "nome-do-seu-bucket-da-storage-stack")
+BUCKET_NAME = os.getenv("AWS_BUCKET_NAME", "balse-01-teste")  # Nome do bucket S3
 
 s3_client = boto3.client("s3")
 
