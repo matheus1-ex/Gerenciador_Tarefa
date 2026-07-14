@@ -1,6 +1,7 @@
 import os
 import boto3
 from typing import List
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, Depends, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
@@ -48,8 +49,18 @@ class TarefaResponse(TarefaCreate):
 def home():
     return {"mensagem": "API CloudTask rodando e conectada ao banco de dados!"}
 
+# Pagina de Login
+@app.get("/entrar/")
+def entrar():
+    return FileResponse("login/login.html")
+
+# Pagina de Cadastro
+@app.get("/cadastro-gratis/")
+def cadastro_gratis():
+    return FileResponse("cadastro/cadastro.html")
+
 # Rota de Cadastro de Usuário
-@app.post("/cadastro/")
+@app.post("/cadastrar/")
 def cadastrar_usuario(usuario: UsuarioCreate, db: Session = Depends(database.get_db)):
     novo_usuario = models.UsuarioTable(
         nome=usuario.nome,
