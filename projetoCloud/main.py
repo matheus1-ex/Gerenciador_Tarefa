@@ -1,7 +1,6 @@
 import os
 import boto3
 from typing import List
-from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, Depends, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
@@ -45,19 +44,20 @@ class TarefaResponse(TarefaCreate):
     class Config:
         from_attributes = True
 
+def achar_html(nome_arquivo):
+    caminhos_possiveis = [
+        nome_arquivo,                               
+        f"/var/www/html/{nome_arquivo}",            
+        f"/home/ec2-user/{nome_arquivo}"           
+    ]
+    for caminho in caminhos_possiveis:
+        if os.path.exists(caminho):
+            return caminho
+    return None
+
 @app.get("/")
 def home():
     return {"mensagem": "API CloudTask rodando e conectada ao banco de dados!"}
-
-# Pagina de Login
-@app.get("/entrar/")
-def entrar():
-    return FileResponse("login/login.html")
-
-# Pagina de Cadastro
-@app.get("/cadastro-gratis/")
-def cadastro_gratis():
-    return FileResponse("cadastro/cadastro.html")
 
 # Rota de Cadastro de Usuário
 @app.post("/cadastrar/")
