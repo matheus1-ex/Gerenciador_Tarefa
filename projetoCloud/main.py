@@ -44,12 +44,23 @@ class TarefaResponse(TarefaCreate):
     class Config:
         from_attributes = True
 
+def achar_html(nome_arquivo):
+    caminhos_possiveis = [
+        nome_arquivo,                               
+        f"/var/www/html/{nome_arquivo}",            
+        f"/home/ec2-user/{nome_arquivo}"           
+    ]
+    for caminho in caminhos_possiveis:
+        if os.path.exists(caminho):
+            return caminho
+    return None
+
 @app.get("/")
 def home():
     return {"mensagem": "API CloudTask rodando e conectada ao banco de dados!"}
 
 # Rota de Cadastro de Usuário
-@app.post("/cadastro/")
+@app.post("/cadastrar/")
 def cadastrar_usuario(usuario: UsuarioCreate, db: Session = Depends(database.get_db)):
     novo_usuario = models.UsuarioTable(
         nome=usuario.nome,
@@ -97,7 +108,7 @@ def deletar_tarefa(tarefa_id: int, db: Session = Depends(database.get_db)):
     db.commit()
     return {"mensagem": f"Tarefa {tarefa_id} deletada com sucesso!"}
 
-BUCKET_NAME = os.getenv("AWS_BUCKET_NAME", "nome-do-seu-bucket-da-storage-stack")
+BUCKET_NAME = os.getenv("AWS_BUCKET_NAME", "balse-01-teste")  # Nome do bucket S3
 
 s3_client = boto3.client("s3")
 
